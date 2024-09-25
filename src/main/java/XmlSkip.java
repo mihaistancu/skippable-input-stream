@@ -74,15 +74,4 @@ public class XmlSkip {
 
         return builder.toString();
     }
-
-    public static int skipToFirstNonWhitespace(InputStream is) throws IOException {
-        int c;
-        do {
-            c = is.read();
-            if (c == -1) {
-                throw new RuntimeException("Only whitespace");
-            }
-        } while (Character.isWhitespace(c));
-        return c;
-    }
 }

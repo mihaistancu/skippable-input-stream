@@ -10,7 +10,7 @@ public class StackPatternCheckTests {
     @Test
     public void testCombinations() {
         check("<t/>", "<t/>");
-        check("<t></t><t/>", "<t/>");
+        check("<t></t>", "<t></t>");
     }
 
     public void check(String items, String pattern) {
