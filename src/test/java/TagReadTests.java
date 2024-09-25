@@ -1,3 +1,4 @@
+import common.StringSerializer;
 import exceptions.NoEndTagException;
 import exceptions.NoStartTagException;
 import org.junit.jupiter.api.Test;
