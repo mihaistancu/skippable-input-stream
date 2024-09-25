@@ -1,9 +1,11 @@
 import common.JoinedStream;
+import common.XmlSanitization;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 import static common.StringSerializer.getInputStream;
+import static common.XmlSanitization.sanitize;
 
 public class SedStream extends InputStream {
     private final InputStream is;
@@ -21,10 +23,6 @@ public class SedStream extends InputStream {
         sanitizedSedRoot = sanitize(sbdRoot, sedRoot);
 
         this.is = new XmlElementStream(new JoinedStream(getInputStream(sanitizedSedRoot), is));
-    }
-
-    private String sanitize(String sbdRoot, String sedRoot) {
-        return sedRoot;
     }
 
     @Override
