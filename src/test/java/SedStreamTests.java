@@ -11,9 +11,9 @@ public class SedStreamTests {
     public void test() throws Exception {
         String xml = """
                 <?xml version="1.0" encoding="UTF-8"?>
-                <sbd>
+                <sbd xmlns:ns1="http://ns1">
                     <sbdh></sbdh>
-                    <sed>content</sed>
+                    <sed ns1:a="1">content</sed>
                 </sbd>
                 """;
 
@@ -21,7 +21,7 @@ public class SedStreamTests {
 
         SedStream sed = new SedStream(is);
 
-        String expected = "<sed>content</sed>";
+        String expected = "<sed xmlns:ns1=\"http://ns1\" ns1:a=\"1\">content</sed>";
 
         assertEquals(expected, StringSerializer.toString(sed));
     }

@@ -33,8 +33,17 @@ public class XmlElementStream extends InputStream{
         if (c == '<') {
             stack.push(c);
         } else if (c == '/') {
-            stack.push(c);
-        } else if (c == '>') {
+            if (stack.peek() != '"') {
+                stack.push(c);
+            }
+        } else if (c == '"') {
+            if (stack.peek() == '"') {
+                stack.pop();
+            } else {
+                stack.push(c);
+            }
+        }
+        else if (c == '>') {
             stack.push(c);
 
             if (StackCheck.check(stack, "<t/>")) {
@@ -47,7 +56,7 @@ public class XmlElementStream extends InputStream{
                 return c;
             }
             int prev = stack.peek();
-            if (prev != 't' && prev != '>') {
+            if (prev != 't' && prev != '>' && prev != '"') {
                 stack.push((int) 't');
             }
         }
