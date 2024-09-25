@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TagReadTests {
+
+
     @Test
     public void whitespacesAreIgnored() throws Exception {
         assertEquals("<x>", read("<x>"));
