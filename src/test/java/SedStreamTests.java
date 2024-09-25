@@ -6,7 +6,7 @@ import java.io.InputStream;
 import static common.StringSerializer.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SedExtractorTests {
+public class SedStreamTests {
     @Test
     public void test() throws Exception {
         String xml = """
