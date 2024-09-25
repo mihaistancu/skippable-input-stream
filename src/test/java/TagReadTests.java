@@ -1,10 +1,10 @@
-import common.StringSerializer;
 import exceptions.NoEndTagException;
 import exceptions.NoStartTagException;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 
+import static common.StringSerializer.getInputStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -33,7 +33,7 @@ public class TagReadTests {
     }
 
     private static String read(String input) throws Exception {
-        try (InputStream is = StringSerializer.toByteArray(input)) {
+        try (InputStream is = getInputStream(input)) {
             return XmlSkip.readTag(is);
         }
     }
