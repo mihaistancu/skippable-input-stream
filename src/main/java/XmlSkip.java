@@ -1,5 +1,3 @@
-import common.StackCheck;
-import common.StackPop;
 import exceptions.InvalidXmlDeclaration;
 import exceptions.InvalidXmlStartCharacter;
 import exceptions.NoEndTagException;
@@ -7,11 +5,6 @@ import exceptions.NoStartTagException;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.PublicKey;
-import java.util.Stack;
-
-import static common.StackCheck.*;
-import static common.StackPop.*;
 
 public class XmlSkip {
     public static String readFirstTag(InputStream is) throws Exception {
@@ -80,35 +73,6 @@ public class XmlSkip {
         } while (c != '>');
 
         return builder.toString();
-    }
-
-    public static void skipCurrentElement(InputStream is) throws Exception {
-        Stack<Integer> stack = new Stack<>();
-        int c = skipToFirstNonWhitespace(is);
-        stack.push(c);
-
-        do {
-            c = is.read();
-
-            if (c == '<') {
-                stack.push(c);
-            } else if (c == '/') {
-                stack.push(c);
-            } else if (c == '>') {
-                stack.push(c);
-
-                if (check(stack, "<t/>")) {
-                    pop(stack, 4);
-                } else if (check(stack, "<t></t>")) {
-                    pop(stack, 7);
-                }
-            } else {
-                int prev = stack.peek();
-                if (prev != 't' && prev != '>') {
-                    stack.push((int) 't');
-                }
-            }
-        } while (!stack.empty());
     }
 
     public static int skipToFirstNonWhitespace(InputStream is) throws IOException {

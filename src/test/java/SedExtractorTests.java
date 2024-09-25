@@ -21,10 +21,7 @@ public class SedExtractorTests {
 
         SedStream sed = new SedStream(is);
 
-        String expected = """
-                <sed>content</sed>
-                </sbd>
-                """;
+        String expected = "<sed>content</sed>";
 
         assertEquals(expected, StringSerializer.toString(sed));
     }

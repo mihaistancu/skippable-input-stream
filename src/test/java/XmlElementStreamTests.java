@@ -6,7 +6,7 @@ import java.io.InputStream;
 import static common.StringSerializer.getInputStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SkipElementTests {
+public class XmlElementStreamTests {
     @Test
     public void testCombinations() throws Exception {
         check("<a></a><next>", "<next>");
@@ -17,7 +17,8 @@ public class SkipElementTests {
     public void check(String input, String expected) throws Exception {
         InputStream is = getInputStream(input);
 
-        XmlSkip.skipCurrentElement(is);
+        var stream = new XmlElementStream(is);
+        stream.skipToEnd();
         assertEquals(expected, StringSerializer.toString(is));
     }
 
