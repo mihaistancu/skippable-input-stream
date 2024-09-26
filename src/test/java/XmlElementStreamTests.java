@@ -17,6 +17,12 @@ public class XmlElementStreamTests {
         check("<a>xy/z</a><next>", "<next>");
     }
 
+    @Test
+    public void commentsAreIgnored() throws Exception {
+        check("<!--comment--><a></a><next>", "<next>");
+        check("<!-->comment--><a></a><next>", "<next>");
+    }
+
     public void check(String input, String expected) throws Exception {
         InputStream is = getInputStream(input);
 
