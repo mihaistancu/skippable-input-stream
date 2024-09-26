@@ -18,9 +18,12 @@ public class XmlElementStreamTests {
     }
 
     @Test
-    public void commentsAreIgnored() throws Exception {
+    public void commentsAreHandledProperly() throws Exception {
         check("<!--comment--><a></a><next>", "<next>");
         check("<!-->comment--><a></a><next>", "<next>");
+        check("<!--c1--><!--c2--><a></a><next>", "<next>");
+        check("<!--c1--><a><!--c2--></a><next>", "<next>");
+        check("<!--c1--><a></a><!--c2--><next>", "<!--c2--><next>");
     }
 
     public void check(String input, String expected) throws Exception {
