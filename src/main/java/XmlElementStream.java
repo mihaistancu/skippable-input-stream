@@ -33,7 +33,7 @@ public class XmlElementStream extends InputStream{
         if (c == '<') {
             stack.push(c);
         } else if (c == '/') {
-            if (stack.peek() != '"') {
+            if (stack.peek() != '"' && stack.peek() != '>') {
                 stack.push(c);
             }
         } else if (c == '"') {

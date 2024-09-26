@@ -14,6 +14,7 @@ public class XmlElementStreamTests {
         check("   <a> \r\n text </a><next>","<next>");
 
         check("<a xmlns:ns1=\"http://ns1\"></a><next>", "<next>");
+        check("<a>xy/z</a><next>", "<next>");
     }
 
     public void check(String input, String expected) throws Exception {
