@@ -21,6 +21,13 @@ public class TagReadTests {
     }
 
     @Test
+    public void commentsAreIgnored() throws Exception {
+        assertEquals("<x>", read("<!--c--><x>"));
+        assertEquals("<x>", read("<!--c1--><!--c2--><x>"));
+        assertEquals("<x>", read("<!--c1-->  <!--c2-->  <x>"));
+    }
+
+    @Test
     public void failsWhenNoEndTag() {
         assertThrows(NoEndTagException.class, () -> {
             read("<x");

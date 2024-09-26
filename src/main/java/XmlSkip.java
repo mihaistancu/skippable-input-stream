@@ -52,6 +52,19 @@ public class XmlSkip {
     }
 
     public static String readTag(InputStream is) throws Exception {
+        while (true) {
+            String tag = readTagIncludingComment(is);
+            if (!isComment(tag)) {
+                return tag;
+            }
+        }
+    }
+
+    private static boolean isComment(String tag) {
+        return tag.startsWith("<!--") && tag.endsWith("-->");
+    }
+
+    public static String readTagIncludingComment(InputStream is) throws Exception {
         StringBuilder builder = new StringBuilder();
 
         int c;
